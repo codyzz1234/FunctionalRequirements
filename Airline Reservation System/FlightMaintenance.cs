@@ -122,7 +122,7 @@ namespace Airline_Reservation_System
             // // Display Inputted Information
             Console.WriteLine("/n/n");
             DisplayEnteredFlightInformation(flightsInformation);
-            Console.WriteLine("Re enter inputs?[Y][N]: ");
+            Console.Write("Re enter inputs?[Y][N]: ");
             userInput = Console.ReadLine();
             if(userInput == "y" || userInput == "Y"){
                 Console.Clear();

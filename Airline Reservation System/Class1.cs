@@ -65,7 +65,7 @@ namespace Airline_Reservation_System
                    if (choice == "a" || choice == "A")
                    {
                         flightMaintenance.addNewFlight();
-                        Console.Write("Continue[y][n]: ");
+                        Console.Write("Add New Flight Information?[y][n]: ");
                         choice = Console.ReadLine();
                         if(choice == "y" || choice == "Y"){
                             Console.Clear();
