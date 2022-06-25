@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "r5Xqj1TQZtmVBPyUNdZwZkgGMs67dicI3bu6uU7oFuBm/AZiKoGqE0YsfpjDj3Fq8YRHjYfGH6QnSMHVcRq/0w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\kenley\\source\\repos\\Airline Reservation System\\Airline Reservation System\\Airline Reservation System.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\kenley\\.nuget\\packages\\csvhelper\\27.2.1\\csvhelper.27.2.1.nupkg.sha512"
+  ],
+  "logs": []
+}

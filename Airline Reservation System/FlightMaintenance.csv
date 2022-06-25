@@ -1,0 +1,4 @@
+﻿Airline_Code,Flight_Number,Arrival Station,Departure_Station,Scheduled_Arrival,Scheduled_Departure 
+a1,551,A54,D56,02:25,10:20
+rq,5968,DA5,E55,02:25,12:24
+rq,5986,DA5,E55,02:25,12:24
