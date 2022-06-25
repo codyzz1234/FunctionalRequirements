@@ -160,43 +160,15 @@ namespace Airline_Reservation_System
         {
             if (validation == "airCode")
             {
-                if ((userInput.Length != 2))
+                const string pattern = @"^(([A-zA-Z]){2}|([0-9]){1}([A-zA-Z])|([A-zA-Z]){1}([0-9]))$";
+                var match = Regex.Match(userInput,pattern);
+                if (match.Success == false)
                 {
-                    Console.WriteLine("Invalid airline code length should only be two characters");
+                    Console.WriteLine("Must either comprise of all letters or If first character is a numeric digit, secondcharacter should be a letter");
                     return false;
-                }
-                else if (Char.IsDigit(userInput[0]) == true){
-                    if (Char.IsDigit(userInput[1])) {
-                        Console.WriteLine("Second character must be a letter ");
-                        return false;
-                    }
-                    else
-                    {
-                        return true;
-                    }
-                }
-                else
-                {
-                    return true;
-                }
-          
-            }
-
-            else if(validation == "flightNum"){
-                int flightNumber;
-                bool canConvert = Int32.TryParse(userInput,out flightNumber);
-                if(canConvert == true){
-                    if(flightNumber > 9999 || flightNumber < 1){
-                        Console.WriteLine("Flight Number must be between(inclusive) 1-9999");
-                        return false;
-                    }
-                    else{
-                        return true;
-                    }
                 }
                 else{
-                    Console.WriteLine("Flight number must be a number");
-                    return false;
+                    return true;
                 }
             }
 
