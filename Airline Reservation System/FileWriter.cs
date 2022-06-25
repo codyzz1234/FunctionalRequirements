@@ -86,6 +86,101 @@ namespace Airline_Reservation_System
                 return doesExist;
             }
         }
+
+        //SearchBy Flight Info
+        public void searchFlightNumber(String flightNumber){
+            string path = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\", "FlightMaintenance.csv"); // Path For File Location
+            path = path.Replace(@"\", @"\\");
+            Boolean found = false;
+            using (var streamReader = new StreamReader(path, Encoding.UTF8))
+            {
+                using (var csvReader = new CsvReader(streamReader, CultureInfo.InvariantCulture))
+                {
+                    var records = csvReader.GetRecords<FlightInfo>().ToList();
+                    foreach(var record in records){
+                        if(record.Flight_Number.Equals(flightNumber)){
+                            found = true;
+                            Console.WriteLine("Airline Code is: " + record.Airline_Code);
+                            Console.WriteLine("Flight Number is: " + record.Flight_Number);
+                            Console.WriteLine("Arrival Station is: " + record.Arrival_Station);
+                            Console.WriteLine("Departure Station is: " + record.Departure_Station);
+                            Console.WriteLine("STA (Scheduled Time of Arrival)  " + record.STA);
+                            Console.WriteLine("STD (Scheduled Time of Departure) " + record.STD);
+                            Console.WriteLine();
+                        }    
+                    }
+                }
+            }
+            if(found == false){
+                Console.WriteLine("Could not find a matching Flight");
+            }
+        }
+        //Search Airline Code
+        public void searchAirLineCode(String airLineCode){
+            string path = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\", "FlightMaintenance.csv"); // Path For File Location
+            path = path.Replace(@"\", @"\\");
+            Boolean found = false;
+            using (var streamReader = new StreamReader(path, Encoding.UTF8))
+            {
+                using (var csvReader = new CsvReader(streamReader, CultureInfo.InvariantCulture))
+                {
+                    var records = csvReader.GetRecords<FlightInfo>().ToList();
+                    foreach(var record in records){
+                        if(record.Airline_Code.Equals(airLineCode)){
+                            found = true;
+                            Console.WriteLine("Airline Code is: " + record.Airline_Code);
+                            Console.WriteLine("Flight Number is: " + record.Flight_Number);
+                            Console.WriteLine("Arrival Station is: " + record.Arrival_Station);
+                            Console.WriteLine("Departure Station is: " + record.Departure_Station);
+                            Console.WriteLine("STA (Scheduled Time of Arrival)  " + record.STA);
+                            Console.WriteLine("STD (Scheduled Time of Departure) " + record.STD);
+                            Console.WriteLine();
+                        }    
+                    }
+                }
+            }
+            if(found == false){
+                Console.WriteLine("Could not find a matching Flight");
+            }
+
+        }
+
+        public void searchStations(String arrivalStation, String departureStation){
+            string path = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\", "FlightMaintenance.csv"); // Path For File Location
+            path = path.Replace(@"\", @"\\");
+            Boolean found = false;
+            using (var streamReader = new StreamReader(path, Encoding.UTF8))
+            {
+                using (var csvReader = new CsvReader(streamReader, CultureInfo.InvariantCulture))
+                {
+                    var records = csvReader.GetRecords<FlightInfo>().ToList();
+                    foreach(var record in records){
+                   
+                        if((record.Arrival_Station.Equals(arrivalStation)) && (record.Departure_Station.Equals(departureStation))){
+                            found = true;
+                            Console.WriteLine("Airline Code is: " + record.Airline_Code);
+                            Console.WriteLine("Arrival Station is: " + record.Flight_Number);
+                            Console.WriteLine("Departure Station is: " + record.Departure_Station);
+                            Console.WriteLine("STA (Scheduled Time of Arrival)  " + record.STA);
+                            Console.WriteLine("STD (Scheduled Time of Departure) " + record.STD);
+                            Console.WriteLine();
+                        }    
+                            // Console.WriteLine("Airline Code is: " + record.Airline_Code);
+                            // Console.WriteLine("Flight Number is: " + record.Flight_Number);
+                            // Console.WriteLine("Arrival Station is: " + record.Arrival_Station);
+                            // Console.WriteLine("Departure Station is: " + record.Departure_Station);
+                            // Console.WriteLine("STA (Scheduled Time of Arrival)  " + record.STA);
+                            // Console.WriteLine("STD (Scheduled Time of Departure) " + record.STD);
+                            // Console.WriteLine();
+                    }
+                }
+            }
+            if(found == false){
+                Console.WriteLine("Could not find a matching Flight");
+            }
+
+        }
+
     }
 
 

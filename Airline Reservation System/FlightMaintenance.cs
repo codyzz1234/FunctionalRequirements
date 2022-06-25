@@ -29,10 +29,8 @@ namespace Airline_Reservation_System
 
     internal class FlightMaintenance
     {
-        public String someMethod()
-        {
-            return "You accessed this method";
-        }
+      
+        //Add Flights
         public void addNewFlight()
         {
 
@@ -143,7 +141,7 @@ namespace Airline_Reservation_System
             }
         }
 
-        public void DisplayEnteredFlightInformation(FlightsInformation flightsInformation){
+        private void DisplayEnteredFlightInformation(FlightsInformation flightsInformation){
             Console.Clear();
             Console.WriteLine("Airline Code: " + flightsInformation.airlineCode);
             Console.WriteLine("Flight Number : " + flightsInformation.flightNum);
@@ -263,7 +261,7 @@ namespace Airline_Reservation_System
             return false;
         }
 
-        public bool doTheseInputsExist(FlightsInformation flightsInformation){
+        private bool doTheseInputsExist(FlightsInformation flightsInformation){
             Boolean doesExist = false;
             FileWriter fileWriter = new FileWriter();
             doesExist = fileWriter.checkFlightsExist(doesExist, flightsInformation); 
@@ -276,7 +274,79 @@ namespace Airline_Reservation_System
             fileWriter.writeNewFlights(flightsInformation);
             Console.WriteLine("New flight information has been published");
         }
+
+
+        //Search Flights
+        
+   
+        public void searchByFlightNumber(){
+          RetryFlightNum:
+          String flightNumber;
+          String validation = "flightNum";
+          Console.Write("Input Flight Number: ");
+          flightNumber = Console.ReadLine();
+          Console.Clear();
+          Boolean isValid = validateInput(validation,flightNumber);
+          if(isValid == false)
+              goto RetryFlightNum;
+            
+    
+          else{
+              FileWriter fileWriter = new FileWriter();
+              fileWriter.searchFlightNumber(flightNumber);
+          }
+        }
+
+        public void searchByAirlineCode(){
+          RetryAirLineCode:
+          String airLineCode;
+          String validation = "airCode";
+          Console.Write("Input AirlineCode: ");
+          airLineCode = Console.ReadLine();
+          Console.Clear();
+          Boolean isValid = validateInput(validation,airLineCode);
+          if(isValid == false)
+              goto RetryAirLineCode;
+            
+          else{
+              FileWriter fileWriter = new FileWriter();
+              fileWriter.searchAirLineCode(airLineCode);
+          }
+
+        }
+        public void searchByOriginDestination(){
+          RetryArrival:
+          String arrivalStation;
+          String validation = "arrivalStat";
+          Console.Write("Input Arrival Station: ");
+          arrivalStation = Console.ReadLine();
+          arrivalStation = arrivalStation.ToUpper();
+          Boolean isValid = validateInput(validation,arrivalStation);
+          if(isValid == false){
+              goto RetryArrival;
+          }
+           
+          else{
+              RetryDeparture:
+              validation = "departureStat";
+              Console.Write("Input Departure Station: ");
+              String departureStation = Console.ReadLine();
+              departureStation = departureStation.ToUpper();
+              isValid = validateInput(validation,departureStation);
+              if(isValid == false){
+                 goto RetryDeparture;
+              }
+              else{
+                 Console.Clear();
+                 FileWriter fileWriter = new FileWriter();
+                 fileWriter.searchStations(arrivalStation,departureStation);
+              }
+          }
+
+
+        }
     }
+
 
     
     

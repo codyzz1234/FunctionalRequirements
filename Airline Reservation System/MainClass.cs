@@ -55,15 +55,13 @@ namespace Airline_Reservation_System
             Console.WriteLine("b. Reservations");
             choice = Console.ReadLine();
             Console.Clear();
-                if (choice == "a" || choice == "A")
-                {
+                if (choice == "a" || choice == "A"){
                    flightMain:
                    FlightMaintenance flightMaintenance = new FlightMaintenance();
                    Console.WriteLine("a. Adding a flight");
                    Console.WriteLine("b. Searching For A Flight");
                    choice = Console.ReadLine();
-                   if (choice == "a" || choice == "A")
-                   {
+                   if (choice == "a" || choice == "A"){
                         flightMaintenance.addNewFlight();
                         Console.Write("Add New Flight Information?[y][n]: ");
                         choice = Console.ReadLine();
@@ -78,14 +76,71 @@ namespace Airline_Reservation_System
                    }
 
                    else if (choice == "b" || choice == "B"){
-                   }
+                    flightSearch:
+                    Console.Clear();
+                    Console.WriteLine("[1]. Search By Flight Number");
+                    Console.WriteLine("[2]. Search By AirlineCode");
+                    Console.WriteLine("[3]. Search By Arrival And Departure Station");
+                    Console.WriteLine("[4]. Exit");
+                    choice = Console.ReadLine();
+                        if(choice == "1"){
+                            searchFlightNumber:
+                            Console.Clear();
+                            flightMaintenance.searchByFlightNumber();
+                            Console.Write("Search for Another Flight?[Y][N]: ");
+                            choice = Console.ReadLine();
+                            if(choice == "Y" || choice == "y" ){
+                                goto searchFlightNumber;
+                            }
+                            else{
+                                goto flightSearch;
+                            }
 
+                        }
+
+                        else if(choice == "2"){
+                            searchAirLineCode:
+                            Console.Clear();
+                            flightMaintenance.searchByAirlineCode();
+                            Console.Write("Search for Another Flight?[Y][N]: ");
+                            choice = Console.ReadLine();
+                            if(choice == "Y" || choice == "y" ){
+                                goto searchAirLineCode;
+                            }
+                            else{
+                                goto flightSearch;
+                            }
+                        }
+                        else if(choice == "3"){
+                            searchOriginDestination:
+                            Console.Clear();
+                            flightMaintenance.searchByOriginDestination();
+                            Console.Write("Search for Another Flight?[Y][N]: ");
+                            choice = Console.ReadLine();
+                            if(choice == "Y" || choice == "y" ){
+                                
+                                goto searchOriginDestination;
+                            }
+                            else{
+                                goto flightSearch;
+                            }
+                        }
+
+                        else if(choice == "4"){
+                            Console.Clear();
+                            goto mainMenu;
+                        }
+                        else{
+                            goto mainMenu;
+                        }
+                        
+                    }
                 }
-                else if(choice == "b" || choice == "B")
-                {
-                   Console.WriteLine("You Choose B choose:");
 
 
+                else if(choice == "b" || choice == "B"){
+
+                    
                 }
                 else
                 {
