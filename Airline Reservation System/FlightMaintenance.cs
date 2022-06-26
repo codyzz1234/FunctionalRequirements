@@ -171,6 +171,25 @@ namespace Airline_Reservation_System
                     return true;
                 }
             }
+            
+             else if(validation == "flightNum"){
+                int flightNumber;
+                bool canConvert = Int32.TryParse(userInput,out flightNumber);
+                if(canConvert == true){
+                    if(flightNumber > 9999 || flightNumber < 1){
+                        Console.WriteLine("Flight Number must be between(inclusive) 1-9999");
+                        return false;
+                    }
+                    else{
+                        return true;
+                    }
+                }
+                else{
+                    Console.WriteLine("Flight number must be a number");
+                    return false;
+                    return true;
+                }
+            }
 
             else if(validation == "arrivalStat" ){
                 if(userInput.All(char.IsLetterOrDigit) && userInput.Length == 3){
