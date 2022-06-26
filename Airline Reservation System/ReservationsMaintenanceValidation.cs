@@ -87,16 +87,10 @@ namespace Airline_Reservation_System
                     var records = csvReader.GetRecords<ReservationCsvInfo>().ToList();
                     foreach (var record in records)
                     {
-                   
                         if(record.PNR_Number.Equals(pnrNumber)){
                             doesExist = true;
-                        }
-                        /*
-                        if(record.PNR_Number.Equals(pnrNumber,StringComparison.CurrentCultureIgnoreCase)){
-                            doesExist = true;
-                            Console.WriteLine("Found: ");
                             break;
-                        }*/
+                        }          
                     }
                 }
             }
