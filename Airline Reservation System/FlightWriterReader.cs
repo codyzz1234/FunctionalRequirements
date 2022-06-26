@@ -146,7 +146,7 @@ namespace Airline_Reservation_System
             }
 
         }
-
+        //Search By Station
         public void searchStations(String arrivalStation, String departureStation){
             string path = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\", "FlightMaintenance.csv"); // Path For File Location
             path = path.Replace(@"\", @"\\");
@@ -177,6 +177,36 @@ namespace Airline_Reservation_System
 
         }
 
+        //Check if Flight Exist when making reservation
+        public bool checkFlightExistWhenMakingReserve(FlightsInformation flightsInformation){
+            Boolean doesExist = false;
+            string path = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\", "FlightMaintenance.csv"); // Path For File Location
+            path = path.Replace(@"\", @"\\");
+            using (var streamReader = new StreamReader(path, Encoding.UTF8))
+            {
+                using (var csvReader = new CsvReader(streamReader, CultureInfo.InvariantCulture))
+                {
+                    var records = csvReader.GetRecords<FlightInfo>().ToList();
+                    foreach (var record in records)
+                    {
+                        if ((record.Airline_Code == flightsInformation.airlineCode)
+                           && (record.Flight_Number == flightsInformation.flightNum)
+                           && (record.Arrival_Station == flightsInformation.arrivalStation
+                           && (record.Departure_Station == flightsInformation.departureStation))){
+                                doesExist = true;
+                                break;
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                }
+                return doesExist;
+            }
+            
+        }
+
     }
 
 
@@ -190,7 +220,7 @@ namespace Airline_Reservation_System
         [Name("Flight_Number")]
         public String Flight_Number { get; set; }
 
-        [Name("Arrival Station")]
+        [Name("Arrival_Station")]
         public String Arrival_Station { get; set; }
 
 

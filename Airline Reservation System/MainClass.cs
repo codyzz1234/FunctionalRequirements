@@ -18,8 +18,6 @@ namespace Airline_Reservation_System
         static void Main(String[] args)
         {
             
-
-
             // string path = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\", "FlightMaintenance.csv");
             // Console.WriteLine("Path is " + path);
             // path = path.Replace(@"\", @"\\");
@@ -50,20 +48,21 @@ namespace Airline_Reservation_System
             //     csv.WriteRecords(appendFlightInfo);
             // }
 
-
-
+            
+           
             String choice;
             mainMenu:
             Console.WriteLine("Select A Choice: ");
-            Console.WriteLine("a. Flight Maintenance:");
-            Console.WriteLine("b. Reservations");
+            Console.WriteLine("[A]. Flight Maintenance:");
+            Console.WriteLine("[B]. Reservations");
             choice = Console.ReadLine();
             Console.Clear();
                 if (choice == "a" || choice == "A"){
                    flightMain:
                    FlightMaintenance flightMaintenance = new FlightMaintenance();
-                   Console.WriteLine("a. Adding a flight");
-                   Console.WriteLine("b. Searching For A Flight");
+                   Console.WriteLine("[A]. Add A Flight");
+                   Console.WriteLine("[B]. Search For A Flight");
+                   Console.WriteLine("[C]. Exit");
                    choice = Console.ReadLine();
                    if (choice == "a" || choice == "A"){
                         flightMaintenance.addNewFlight();
@@ -141,30 +140,41 @@ namespace Airline_Reservation_System
                     }
                 }
                 else if(choice == "b" || choice == "B") {
+                        reservationMenu:
                         ReservationsMaintenance reservationsMaintenance = new ReservationsMaintenance();
                         Console.WriteLine("[A]. Create Reservation");
                         Console.WriteLine("[B]. List All Reservations");
                         Console.WriteLine("[C]. Search By PNR number");
                         Console.WriteLine("[D]. Exit");
-
                         choice = Console.ReadLine();
                         if(choice.Equals("A",StringComparison.OrdinalIgnoreCase)){
+                            addReservation:
+                            Console.Clear();
                             reservationsMaintenance.addReservation();
+                            Console.WriteLine("Add Another Reservation?[Y][N]: ");
+                            choice = Console.ReadLine();
+                            if(choice.Equals("Y",StringComparison.CurrentCultureIgnoreCase)){
+                                goto addReservation;
+                            }
+                            else{
+                                Console.Clear();
+                                goto reservationMenu;
+                            }
                         }
 
                         else if(choice.Equals("B",StringComparison.OrdinalIgnoreCase)){
+                            Console.Clear();
                             reservationsMaintenance.ListAllReservations();
                         }
 
                         else if(choice.Equals("C",StringComparison.OrdinalIgnoreCase)){
+                            Console.Clear();
                             reservationsMaintenance.searchByPNR();
                         }
                         else{
                             goto mainMenu;
                         }
-                
-                
-            }
+                }
             else
                 {
                    Console.WriteLine("Please Enter either 'a' or 'b' ");
