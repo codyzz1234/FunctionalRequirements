@@ -171,7 +171,7 @@ namespace Airline_Reservation_System
                     return true;
                 }
             }
-            
+
              else if(validation == "flightNum"){
                 int flightNumber;
                 bool canConvert = Int32.TryParse(userInput,out flightNumber);
@@ -192,35 +192,29 @@ namespace Airline_Reservation_System
             }
 
             else if(validation == "arrivalStat" ){
-                if(userInput.All(char.IsLetterOrDigit) && userInput.Length == 3){
-                    if(Char.IsLetter(userInput[0])){
-                        return true;
-                    }
-                    else{
-                        Console.WriteLine("Arrival Station Code must start with a Letter");
-                        return false;
-                    }
+                const string pattern = @"^([A-Z]{1})([A-Z0-9]{2})$";
+                var match = Regex.Match(userInput,pattern);
+                if (match.Success == false)
+                {
+                    Console.WriteLine("numeric digit is optional. Must at least comprise of all letters.First character must be a letter amd is are all Uppercased");
+                    return false;
                 }
                 else{
-                    Console.WriteLine("Invalid Arrival Station, must only be 3 characters long and only contain Numbers and Letters");
-                    return false;
+                    return true;
                 }
                 
             }
 
              else if(validation == "departureStat" ){
-                if(userInput.All(char.IsLetterOrDigit) && userInput.Length == 3){
-                    if(Char.IsLetter(userInput[0])){
-                        return true;
-                    }
-                    else{
-                        Console.WriteLine("Departure Station Code must start with a Letter");
-                        return false;
-                    }
+                const string pattern = @"^([A-Z]{1})([A-Z0-9]{2})$";
+                var match = Regex.Match(userInput,pattern);
+                if (match.Success == false)
+                {
+                    Console.WriteLine("numeric digit is optional. Must at least comprise of all letters.First character must be a letter amd is are all Uppercased");
+                    return false;
                 }
                 else{
-                    Console.WriteLine("Invalid Departure Station, must only be 3 characters long and only contain Numbers and Letters");
-                    return false;
+                    return true;
                 }
             }
             else if(validation == "sta"){
