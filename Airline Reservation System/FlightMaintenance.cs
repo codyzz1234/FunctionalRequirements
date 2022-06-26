@@ -40,14 +40,13 @@ namespace Airline_Reservation_System
             String validation;
             Boolean validator;
             FlightsInformation flightsInformation;
-    
-
+            FlightMaintenanceValidation flightMaintenanceValidation = new FlightMaintenanceValidation();
+   
             // AirLine Code
             airLineCode:
             Console.Write("AirlineCode: ");
-            validation = "airCode";
             userInput = Console.ReadLine();
-            validator = validateInput(validation,userInput);
+            validator = flightMaintenanceValidation.validateAirCode(userInput);
             if(validator == false){
                 goto airLineCode;
             }
@@ -58,9 +57,8 @@ namespace Airline_Reservation_System
             //Flight Number
             flightNumber:
             Console.Write("Flight Number: ");
-            validation = "flightNum";
             userInput = Console.ReadLine();
-            validator = validateInput(validation,userInput);
+            validator = flightMaintenanceValidation.validateFlightNum(userInput);
             if(validator == false){
                 goto flightNumber;
             }
@@ -71,9 +69,8 @@ namespace Airline_Reservation_System
             //Arrival Station
             arrivalStation:
             Console.Write("Arrival Station: ");
-            validation = "arrivalStat";
             userInput = Console.ReadLine();
-            validator = validateInput(validation,userInput);
+            validator = flightMaintenanceValidation.validateArrivalStat(userInput);
             if(validator == false)
                 goto arrivalStation;
             else
@@ -83,9 +80,8 @@ namespace Airline_Reservation_System
             //DepartureStation
             departureStation:
             Console.Write("Departure Station: ");
-            validation = "departureStat";
             userInput = Console.ReadLine();
-            validator = validateInput(validation,userInput);
+            validator = flightMaintenanceValidation.validateDepartureStat(userInput);
             if(validator == false)
                 goto departureStation;
             else
@@ -95,9 +91,7 @@ namespace Airline_Reservation_System
             scheduledSta:
             Console.Write("Input STA(Scheduled Time of Arrival: ");
             userInput = Console.ReadLine();
-            validation = "sta";
-            validator = validateInput(validation,userInput);
-
+            validator = flightMaintenanceValidation.validateSta(userInput);
             if(validator == false)
                 goto scheduledSta;
             else
@@ -108,9 +102,7 @@ namespace Airline_Reservation_System
             scheduledStd: // lul
             Console.Write("Input STD(Scheduled Time of Departure: ");
             userInput = Console.ReadLine();
-            validation = "std";
-            validator = validateInput(validation,userInput);
-
+            validator = flightMaintenanceValidation.validateStd(userInput);
             if(validator == false)
                 goto scheduledStd;
             else
@@ -130,7 +122,7 @@ namespace Airline_Reservation_System
                 Console.Clear();
                 Boolean checker = doTheseInputsExist(flightsInformation);
                 if(checker == true){
-                    Console.WriteLine("The flight information you have entered already exists as shown above, please re enter new information");
+                    Console.WriteLine("The flight information you have entered already exists as shown above, please re enter new information" + "\n");
                     goto flightInfoMain;
                 }
                 else{
@@ -151,101 +143,6 @@ namespace Airline_Reservation_System
             Console.WriteLine("STD (Scheduled Time of Departure) : " + flightsInformation.std);
         }
 
-
-
-
-
-
-        private Boolean validateInput(String validation, String userInput)
-        {
-            if (validation == "airCode")
-            {
-                const string pattern = @"^(([A-zA-Z]){2}|([0-9]){1}([A-zA-Z])|([A-zA-Z]){1}([0-9]))$";
-                var match = Regex.Match(userInput,pattern);
-                if (match.Success == false)
-                {
-                    Console.WriteLine("Must either comprise of all letters or If first character is a numeric digit, secondcharacter should be a letter");
-                    return false;
-                }
-                else{
-                    return true;
-                }
-            }
-
-             else if(validation == "flightNum"){
-                int flightNumber;
-                bool canConvert = Int32.TryParse(userInput,out flightNumber);
-                if(canConvert == true){
-                    if(flightNumber > 9999 || flightNumber < 1){
-                        Console.WriteLine("Flight Number must be between(inclusive) 1-9999");
-                        return false;
-                    }
-                    else{
-                        return true;
-                    }
-                }
-                else{
-                    Console.WriteLine("Flight number must be a number");
-                    return false;
-                    return true;
-                }
-            }
-
-            else if(validation == "arrivalStat" ){
-                const string pattern = @"^([A-Z]{1})([A-Z0-9]{2})$";
-                var match = Regex.Match(userInput,pattern);
-                if (match.Success == false)
-                {
-                    Console.WriteLine("numeric digit is optional. Must at least comprise of all letters.First character must be a letter amd is are all Uppercased");
-                    return false;
-                }
-                else{
-                    return true;
-                }
-                
-            }
-
-             else if(validation == "departureStat" ){
-                const string pattern = @"^([A-Z]{1})([A-Z0-9]{2})$";
-                var match = Regex.Match(userInput,pattern);
-                if (match.Success == false)
-                {
-                    Console.WriteLine("numeric digit is optional. Must at least comprise of all letters.First character must be a letter amd is are all Uppercased");
-                    return false;
-                }
-                else{
-                    return true;
-                }
-            }
-            else if(validation == "sta"){
-                string pattern = @"^(?:[01][0-9]|2[0-3]):[0-5][0-9]$";
-
-                Regex r = new Regex(pattern,RegexOptions.IgnoreCase);
-                var match = Regex.Match(userInput,pattern);
-                if(!match.Success){
-                    Console.WriteLine("Invalid 24 hour time format ex:[HH:MM]");
-                }
-                else{
-                    return true;
-                }
-
-
-            }
-            else if(validation == "std"){
-                string pattern = @"^(?:[01][0-9]|2[0-3]):[0-5][0-9]$"; // regex match 24 hour format
-                Regex r = new Regex(pattern,RegexOptions.IgnoreCase);
-                var match = Regex.Match(userInput,pattern);
-                if(!match.Success){
-                    Console.WriteLine("Invalid 24 hour time format ex:[HH:MM]");
-                }
-                else{
-                    return true;
-                }
-
-            }
-            return false;
-        }
-
         private bool doTheseInputsExist(FlightsInformation flightsInformation){
             Boolean doesExist = false;
             FlightWriterReader fileWriter = new FlightWriterReader();
@@ -259,19 +156,18 @@ namespace Airline_Reservation_System
             fileWriter.writeNewFlights(flightsInformation);
             Console.WriteLine("New flight information has been published");
         }
-
-
         //Search Flights
         
    
         public void searchByFlightNumber(){
+          FlightMaintenanceValidation flightMaintenanceValidation = new FlightMaintenanceValidation();
           RetryFlightNum:
           String flightNumber;
           String validation = "flightNum";
           Console.Write("Input Flight Number: ");
           flightNumber = Console.ReadLine();
           Console.Clear();
-          Boolean isValid = validateInput(validation,flightNumber);
+          Boolean isValid = flightMaintenanceValidation.validateFlightNum(flightNumber);
           if(isValid == false)
               goto RetryFlightNum;
             
@@ -283,13 +179,14 @@ namespace Airline_Reservation_System
         }
 
         public void searchByAirlineCode(){
+         FlightMaintenanceValidation flightMaintenanceValidation = new FlightMaintenanceValidation();
           RetryAirLineCode:
           String airLineCode;
           String validation = "airCode";
           Console.Write("Input AirlineCode: ");
           airLineCode = Console.ReadLine();
           Console.Clear();
-          Boolean isValid = validateInput(validation,airLineCode);
+          Boolean isValid = flightMaintenanceValidation.validateAirCode(airLineCode);
           if(isValid == false)
               goto RetryAirLineCode;
             
@@ -300,24 +197,24 @@ namespace Airline_Reservation_System
 
         }
         public void searchByOriginDestination(){
+          FlightMaintenanceValidation flightMaintenanceValidation = new FlightMaintenanceValidation();
           RetryArrival:
           String arrivalStation;
           String validation = "arrivalStat";
           Console.Write("Input Arrival Station: ");
           arrivalStation = Console.ReadLine();
           arrivalStation = arrivalStation.ToUpper();
-          Boolean isValid = validateInput(validation,arrivalStation);
+          Boolean isValid = flightMaintenanceValidation.validateArrivalStat(arrivalStation);
           if(isValid == false){
               goto RetryArrival;
           }
-           
           else{
               RetryDeparture:
               validation = "departureStat";
               Console.Write("Input Departure Station: ");
               String departureStation = Console.ReadLine();
               departureStation = departureStation.ToUpper();
-              isValid = validateInput(validation,departureStation);
+              isValid = flightMaintenanceValidation.validateDepartureStat(departureStation);
               if(isValid == false){
                  goto RetryDeparture;
               }
