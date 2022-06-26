@@ -14,8 +14,12 @@ namespace Airline_Reservation_System
     public class MainClass
     {
 
+        
         static void Main(String[] args)
         {
+            
+
+
             // string path = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\", "FlightMaintenance.csv");
             // Console.WriteLine("Path is " + path);
             // path = path.Replace(@"\", @"\\");
@@ -138,24 +142,28 @@ namespace Airline_Reservation_System
                 }
 
 
-                else if(choice == "b" || choice == "B"){
+                else if(choice == "b" || choice == "B") {
+                        ReservationsMaintenance reservationsMaintenance = new ReservationsMaintenance();
+                        reservationsMaintenance.addReservation();
+                        Console.WriteLine("[A]. Create Reservation");
+                        Console.WriteLine("[B]. List All Reservations");
+                        Console.WriteLine("[C]. Search By PNR number");
 
-                    
-                }
-                else
+            }
+            else
                 {
                    Console.WriteLine("Please Enter either 'a' or 'b' ");
                    goto mainMenu;
                 }
+
         }
 
+           
+
     }
-
-  
-
+    
+    //Run these methods if CSV files are missing from proj
 
     // CSV Definition Reader Deserialization Using Classes
-
-
 
 }
