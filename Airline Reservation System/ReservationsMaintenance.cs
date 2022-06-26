@@ -92,9 +92,7 @@ namespace Airline_Reservation_System
             userInput = Console.ReadLine();
             validator = reservationsMaintenanceValidation.validateFlightDate(userInput);
 
-
-
-
+            
         }
         public void ListAllReservations(){
 
