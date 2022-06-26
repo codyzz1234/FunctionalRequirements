@@ -15,7 +15,7 @@ namespace Airline_Reservation_System
             var match = Regex.Match(userInput, pattern);
             if (match.Success == false)
             {
-                Console.WriteLine("Must either comprise of all letters or If first character is a numeric digit, secondcharacter should be a letter");
+                Console.WriteLine("Exactly Two Characters,Must either comprise of all letters. If the first character is a numeric digit, secondcharacter should be a letter");
                 return false;
             }
             else
@@ -48,32 +48,35 @@ namespace Airline_Reservation_System
 
         public Boolean validateArrivalStat(String userInput)
         {
+            Boolean validator = false;
             const string pattern = @"^([A-Z]{1})([A-Z0-9]{2})$";
             var match = Regex.Match(userInput, pattern);
             if (match.Success == false)
             {
-                Console.WriteLine("numeric digit is optional. Must at least comprise of all letters.First character must be a letter amd is are all Uppercased");
-                return false;
+                validator = false;
+                Console.WriteLine("Exactly 3 Characters Long. Numeric digit is optional. Must at least comprise of all letters.The first character must be a letter and all characters uppercased");
             }
             else
             {
-                return true;
+                validator = true;
             }
+            return validator;
         }
         public Boolean validateDepartureStat(String userInput)
         {
+            Boolean validator = false;
             const string pattern = @"^([A-Z]{1})([A-Z0-9]{2})$";
             var match = Regex.Match(userInput, pattern);
             if (match.Success == false)
             {
-                Console.WriteLine("numeric digit is optional. Must at least comprise of all letters.First character must be a letter amd is are all Uppercased");
-                return false;
+                validator = false;
+                Console.WriteLine("Exactly 3 Characters Long. Numeric digit is optional. Must at least comprise of all letters.The first character must be a letter and all characters uppercased");
             }
             else
             {
-                return true;
+                validator = true;
             }
-
+            return validator;
         }
         public Boolean validateSta(String userInput){
                 Boolean validator = false;

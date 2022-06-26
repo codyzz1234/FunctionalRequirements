@@ -182,7 +182,6 @@ namespace Airline_Reservation_System
 
 
 
-
     class FlightInfo
     {
         [Name("Airline_Code")]
@@ -205,7 +204,7 @@ namespace Airline_Reservation_System
         public String STA { get; set; }
 
 
-        [Name("Scheduled_Departure ")]
+        [Name("Scheduled_Departure")]
 
         public String STD { get; set; }
 

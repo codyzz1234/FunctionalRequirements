@@ -140,15 +140,13 @@ namespace Airline_Reservation_System
                         
                     }
                 }
-
-
                 else if(choice == "b" || choice == "B") {
                         ReservationsMaintenance reservationsMaintenance = new ReservationsMaintenance();
                         reservationsMaintenance.addReservation();
                         Console.WriteLine("[A]. Create Reservation");
                         Console.WriteLine("[B]. List All Reservations");
                         Console.WriteLine("[C]. Search By PNR number");
-
+                
             }
             else
                 {
