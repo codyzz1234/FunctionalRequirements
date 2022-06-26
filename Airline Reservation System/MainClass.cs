@@ -138,6 +138,10 @@ namespace Airline_Reservation_System
                         }
                         
                     }
+                    else{
+                            Console.Clear();
+                            goto mainMenu;
+                    }
                 }
                 else if(choice == "b" || choice == "B") {
                         reservationMenu:
