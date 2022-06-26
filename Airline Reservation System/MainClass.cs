@@ -142,10 +142,27 @@ namespace Airline_Reservation_System
                 }
                 else if(choice == "b" || choice == "B") {
                         ReservationsMaintenance reservationsMaintenance = new ReservationsMaintenance();
-                        reservationsMaintenance.addReservation();
                         Console.WriteLine("[A]. Create Reservation");
                         Console.WriteLine("[B]. List All Reservations");
                         Console.WriteLine("[C]. Search By PNR number");
+                        Console.WriteLine("[D]. Exit");
+
+                        choice = Console.ReadLine();
+                        if(choice.Equals("A",StringComparison.OrdinalIgnoreCase)){
+                            reservationsMaintenance.addReservation();
+                        }
+
+                        else if(choice.Equals("B",StringComparison.OrdinalIgnoreCase)){
+                            reservationsMaintenance.ListAllReservations();
+                        }
+
+                        else if(choice.Equals("C",StringComparison.OrdinalIgnoreCase)){
+                            reservationsMaintenance.searchByPNR();
+                        }
+                        else{
+                            goto mainMenu;
+                        }
+                
                 
             }
             else

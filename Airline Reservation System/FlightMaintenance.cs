@@ -34,7 +34,6 @@ namespace Airline_Reservation_System
             Console.Clear();
             flightInfoMain:
             String userInput;
-            String validation;
             Boolean validator;
             FlightsInformation flightsInformation;
             FlightMaintenanceValidation flightMaintenanceValidation = new FlightMaintenanceValidation();
