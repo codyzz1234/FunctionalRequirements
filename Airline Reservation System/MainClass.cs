@@ -153,14 +153,9 @@ namespace Airline_Reservation_System
                    Console.WriteLine("Please Enter either 'a' or 'b' ");
                    goto mainMenu;
                 }
-
         }
-
-           
-
     }
     
-    //Run these methods if CSV files are missing from proj
 
     // CSV Definition Reader Deserialization Using Classes
 
