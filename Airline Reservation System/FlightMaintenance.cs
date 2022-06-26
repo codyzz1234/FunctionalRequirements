@@ -248,14 +248,14 @@ namespace Airline_Reservation_System
 
         private bool doTheseInputsExist(FlightsInformation flightsInformation){
             Boolean doesExist = false;
-            FileWriter fileWriter = new FileWriter();
+            FlightWriterReader fileWriter = new FlightWriterReader();
             doesExist = fileWriter.checkFlightsExist(doesExist, flightsInformation); 
             return doesExist;
         }
 
 
         private void WriteFlightInfoToCsv(FlightsInformation flightsInformation){
-            FileWriter fileWriter = new FileWriter();
+            FlightWriterReader fileWriter = new FlightWriterReader();
             fileWriter.writeNewFlights(flightsInformation);
             Console.WriteLine("New flight information has been published");
         }
@@ -277,7 +277,7 @@ namespace Airline_Reservation_System
             
     
           else{
-              FileWriter fileWriter = new FileWriter();
+              FlightWriterReader fileWriter = new FlightWriterReader();
               fileWriter.searchFlightNumber(flightNumber);
           }
         }
@@ -294,7 +294,7 @@ namespace Airline_Reservation_System
               goto RetryAirLineCode;
             
           else{
-              FileWriter fileWriter = new FileWriter();
+              FlightWriterReader fileWriter = new FlightWriterReader();
               fileWriter.searchAirLineCode(airLineCode);
           }
 
@@ -323,7 +323,7 @@ namespace Airline_Reservation_System
               }
               else{
                  Console.Clear();
-                 FileWriter fileWriter = new FileWriter();
+                 FlightWriterReader fileWriter = new FlightWriterReader();
                  fileWriter.searchStations(arrivalStation,departureStation);
               }
           }
