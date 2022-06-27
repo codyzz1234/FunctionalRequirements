@@ -109,26 +109,26 @@ namespace Airline_Reservation_System
             }
             
         
-        //     //Flight Date
-        //     flightDate:
-        //     Console.Write("Flight Date: ");
-        //     userInput = Console.ReadLine();
-        //     validator = reservationsMaintenanceValidation.validateFlightDate(userInput);
-        //     if(validator  == false)
-        //         goto flightDate;
-        //     else
-        //         reservationInformation.flightDate = userInput;
+            //Flight Date
+            flightDate:
+            Console.Write("Flight Date: ");
+            userInput = Console.ReadLine();
+            validator = reservationsMaintenanceValidation.validateFlightDate(userInput);
+            if(validator  == false)
+                goto flightDate;
+            else
+                reservationInformation.flightDate = userInput;
 
 
-        //     //Number Of Passengers
-        //     numberOfPassengers:
-        //     Console.Write("Number Of Passengers: ");
-        //     userInput = Console.ReadLine();
-        //     validator = reservationsMaintenanceValidation.validatePassengerNumber(userInput);
-        //     if(validator == false)
-        //         goto numberOfPassengers;
-        //     else
-        //         reservationInformation.numPassengers = userInput;  
+            //Number Of Passengers
+            numberOfPassengers:
+            Console.Write("Number Of Passengers: ");
+            userInput = Console.ReadLine();
+            validator = reservationsMaintenanceValidation.validatePassengerNumber(userInput);
+            if(validator == false)
+                goto numberOfPassengers;
+            else
+                reservationInformation.numPassengers = userInput;  
 
             
 
@@ -155,7 +155,7 @@ namespace Airline_Reservation_System
                 }
                 else{
                     reservationInformation.pnrNumber = pnrNumber;
-                    //Console.Clear();
+                    Console.Clear();
                     DisplayReservationInformation(reservationInformation);
                     Console.WriteLine();
                     Console.Write("Do you want to Save this Reservation Info[Y][N][Exit]");
