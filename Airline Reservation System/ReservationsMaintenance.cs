@@ -130,17 +130,8 @@ namespace Airline_Reservation_System
             else
                 reservationInformation.numPassengers = userInput;  
 
-            
 
-            // // Add Passenger Info
-            // addPassengerInfo:
-            // Console.WriteLine("Input: ");
-            // String userInput = Console.ReadLine();
-            // Boolean validator = false;
-            // Passengers passengers = new Passengers();
-            // validator = passengers.addNewPassenger(validator,userInput);
-
-            //Genarate 6 Digit PNR
+            // Genarate 6 Digit PNR
             generatePnrNumber:
             String pnrNumber;
             pnrNumber = generatePnrNumber();
@@ -158,14 +149,25 @@ namespace Airline_Reservation_System
                     Console.Clear();
                     DisplayReservationInformation(reservationInformation);
                     Console.WriteLine();
-                    Console.Write("Do you want to Save this Reservation Info[Y][N][Exit]");
+                    Console.Write("Do you want to Save this Reservation Info[Y][N][Exit]: ");
                     userInput = Console.ReadLine();
                     if(userInput.Equals("Y",StringComparison.CurrentCultureIgnoreCase)){
+                    // Add Passenger Info
+                    addPassengerInfo:
+                        userInput = reservationInformation.numPassengers;
+                        Passengers passengers = new Passengers();
+                        validator = passengers.addNewPassenger(validator, userInput);
+                        if (validator == false)
+                        {
+                            Console.WriteLine("Passenger Information Is Required: ");
+                            goto addPassengerInfo;
+                        }
                         ReservationReadWrite reservationReadWrite = new ReservationReadWrite();
                         reservationReadWrite.addNewReservation(reservationInformation);
                         Console.WriteLine("SuccessFully Added A Reservation");
                         return;
                     }
+
                     else if(userInput.Equals("N",StringComparison.CurrentCultureIgnoreCase)){
                          goto reservationsMain;
                     }
