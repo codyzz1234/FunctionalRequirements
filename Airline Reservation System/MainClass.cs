@@ -169,11 +169,21 @@ namespace Airline_Reservation_System
                         else if(choice.Equals("B",StringComparison.OrdinalIgnoreCase)){
                             Console.Clear();
                             reservationsMaintenance.ListAllReservations();
+                            goto reservationMenu;
                         }
 
                         else if(choice.Equals("C",StringComparison.OrdinalIgnoreCase)){
+                            pnrNumberSearch:
                             Console.Clear();
                             reservationsMaintenance.searchByPNR();
+                            Console.WriteLine("Search Another Number?[Y][N]: ");
+                            choice = Console.ReadLine();
+                            if (choice.Equals("Y", StringComparison.CurrentCultureIgnoreCase)) {
+                                goto pnrNumberSearch;
+                            }
+                            else{
+                                goto reservationMenu;
+                            }
                         }
                         else{
                             goto mainMenu;

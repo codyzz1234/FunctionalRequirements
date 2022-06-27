@@ -190,10 +190,14 @@ namespace Airline_Reservation_System
 
 
         public void ListAllReservations(){
-
+            ReservationReadWrite reservationReadWrite = new ReservationReadWrite();
+            reservationReadWrite.listAllReservations();
         }
         public void searchByPNR(){
-
+            ReservationReadWrite reservationReadWrite = new ReservationReadWrite();
+            Console.Write("Search PNR Number: ");
+            String pnrNumber = Console.ReadLine();
+            reservationReadWrite.searchPnr(pnrNumber);
         }
 
         private string generatePnrNumber(){
